@@ -36,7 +36,6 @@
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="game.h" />
-		<Unit filename="kezdo.csv" />
 		<Unit filename="leaderboard.c">
 			<Option compilerVar="CC" />
 		</Unit>

@@ -6,8 +6,8 @@
 #include <ctype.h>
 #include "debugmalloc.h"
 
-//the function calls the readfromfile function and than starts a game
-//if the user gives the right answer it progresses to the next question
+// The function calls the readfromfile function and than starts a game
+// if the user gives the right answer it progresses to the next question
 extern void game (char *sName,char cDifficulty)
 {
     dynamicArray questionsarray;
@@ -29,7 +29,7 @@ extern void game (char *sName,char cDifficulty)
     srand(time(0));
     int iQuestionindex = (rand()%questionsarray.numberofQuestions)+1;
     // left in test if the functions work properly
-    //printf("number of questions %d , random number %d\n",questionsarray.numberofQuestions,iQuestionindex);
+    // printf("number of questions %d , random number %d\n",questionsarray.numberofQuestions,iQuestionindex);
     // number of the question 1-15
     int iRewardIndex=0;
     char cAnswer;
@@ -44,8 +44,9 @@ extern void game (char *sName,char cDifficulty)
     char cAudienceHelper;
     bool bDidUseHalf=false;
     bool bDidUseAudience=false;
-    do{
 
+    do{
+        bool bDiduseHelp=false;
         system("cls");
         // increasing index for each question
         iRewardIndex++;
@@ -60,85 +61,151 @@ extern void game (char *sName,char cDifficulty)
         printf("[B]:%s\n", model.answerB);
         printf("[C]:%s\n", model.answerC);
         printf("[D]:%s\n", model.answerD);
-        //printf("%c",model.correctAnswer);
+        // printf("%c",model.correctAnswer);
         printf("A valasz betujele:");
         if(bDidUseHalf==false)
         {
             printf("\nSzeretne felhasznalni a felezo segitseget?\n(i)(n)");
             getchar();
             scanf("%c",&cHalfHelper);
-        if(cHalfHelper=='i'&& bDidUseHalf==false)
-        {
-            bool printA=false;
-            bool printB=false;
-            bool printC=false;
-            bool printD=false;
-            bool didChoseAnother=false;
 
-            switch(model.correctAnswer){
+            if(cHalfHelper=='i'&& bDidUseHalf==false)
+            {
+                bDiduseHelp=true;
+                bool printA=false;
+                bool printB=false;
+                bool printC=false;
+                bool printD=false;
+                bool didChoseAnother=false;
 
-            case 'A':
-                printA=true;
-                break;
-            case 'B':
-                printB=true;
-                break;
-            case 'C':
-                printC=true;
-                break;
-            case 'D':
-                printD=true;
-                break;
+                switch(model.correctAnswer){
+
+                case 'A':
+                    printA=true;
+                    break;
+                case 'B':
+                    printB=true;
+                    break;
+                case 'C':
+                    printC=true;
+                    break;
+                case 'D':
+                    printD=true;
+                    break;
+                }
+                do {
+                    char randomletter = 'A' + (rand() % 4);
+                    if (randomletter!=model.correctAnswer)
+                    {
+                        switch(randomletter){
+
+                            case 'A':
+                                printA=true;
+                                didChoseAnother=true;
+                                break;
+
+                            case 'B':
+                                printB=true;
+                                didChoseAnother=true;
+                                break;
+
+                            case 'C':
+                                printC=true;
+                                didChoseAnother=true;
+                                break;
+
+                            case 'D':
+                                printD=true;
+                                didChoseAnother=true;
+                                break;
+                        }
+                    }
+                }
+                while(!didChoseAnother);
+                system("cls");
+                printf("%s\n", model.category);
+                printf("%s\n", model.question);
+                if(printA){
+                    printf("[A]:%s\n", model.answerA);
+                }
+                if(printB){
+                    printf("[B]:%s\n", model.answerB);
+                }
+                if(printC) {
+                    printf("[C]:%s\n", model.answerC);
+                }
+                if(printD) {
+                    printf("[D]:%s\n", model.answerD);
+                }
+                    printf("A valasz betujele:");
+                bDidUseHalf=true;
             }
-            do {
-                char randomletter = 'A' + (rand() % 4);
-                if (randomletter!=model.correctAnswer)
+        }
+        if(bDidUseAudience==false && bDiduseHelp==false)
+        {
+            printf("\nSzeretne felhasznalni a kozonseg segitseget?\n(i)(n)");
+            getchar();
+            scanf("%c",&cAudienceHelper);
+            if(cAudienceHelper=='i'&& bDidUseAudience==false)
+            {
+
+
+
+                int iNumberofA = 0;
+                int iNumberofB = 0;
+                int iNumberofC = 0;
+                int iNumberofD = 0;
+                for(int i=0; i<100;i++)
                 {
-                    switch(randomletter){
 
-                        case 'A':
-                            printA=true;
-                            didChoseAnother=true;
+                    int iRandomNumber = (rand() % 5)+1;
+                    switch (iRandomNumber)
+                    {
+                        case 1:
+                            iNumberofA++;
                             break;
-
-                        case 'B':
-                            printB=true;
-                            didChoseAnother=true;
+                        case 2:
+                            iNumberofB++;
                             break;
-
-                        case 'C':
-                            printC=true;
-                            didChoseAnother=true;
+                        case 3:
+                            iNumberofC++;
                             break;
+                        case 4:
+                            iNumberofD++;
+                            break;
+                        // extra chance for the correct answer
+                        case 5:
+                            switch(model.correctAnswer)
+                            {
 
-                        case 'D':
-                            printD=true;
-                            didChoseAnother=true;
+                                case 'A':
+                                    iNumberofA++;
+                                    break;
+                                case 'B':
+                                    iNumberofB++;
+                                    break;
+                                case 'C':
+                                    iNumberofC++;
+                                    break;
+                                case 'D':
+                                    iNumberofD++;
+                                    break;
+                            }
                             break;
                     }
                 }
-            }
-            while(didChoseAnother);
-            system("cls");
-            printf("%s\n", model.category);
-            printf("%s\n", model.question);
-            if(printA){
-                printf("[A]:%s\n", model.answerA);
-            }
-            if(printB){
-                printf("[B]:%s\n", model.answerB);
-            }
-            if(printC) {
-                printf("[C]:%s\n", model.answerC);
-            }
-            if(printD) {
-                printf("[D]:%s\n", model.answerD);
-            }
-                printf("A valasz betujele:");
-            bDidUseHalf=true;
-        }
-        }
+                system("cls");
+                printf("%s\n", model.category);
+                printf("%s\n", model.question);
+                printf("[A]:%s %d%c\n", model.answerA, iNumberofA,'%');
+                printf("[B]:%s %d%c\n", model.answerB, iNumberofB,'%');
+                printf("[C]:%s %d%c\n", model.answerC, iNumberofC,'%');
+                printf("[D]:%s %d%c\n", model.answerD, iNumberofD,'%');
 
+                bDidUseAudience=true;
+            }
+
+        }
         getchar();
         scanf("%c",&cAnswer);
         printf("\nCorrect answer:[%c].\n",model.correctAnswer);
@@ -150,7 +217,7 @@ extern void game (char *sName,char cDifficulty)
     // calculate the elapsed time
 
 
-    //freeing the received pointer from readFromFile function
+    // freeing the received pointer from readFromFile function
     free(questionsarray.questions);
 
 

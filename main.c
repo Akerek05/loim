@@ -5,17 +5,17 @@
 #include "leaderboard.h"
 
 
-//The function gets a name,and a difficulty from the user and returns difficulty,
+// The function gets a name,and a difficulty from the user and returns difficulty,
 // and name as a pointer.
 static char getNameDifficulty (char *sName){
     printf("Mi a neve? ");
     char cDifficulty;
-    char n[25];
+    char sTempName[25];
 
 
-    fgets(n,20,stdin);
-    n[strcspn(n,"\n")] = '\0';
-    strcpy(sName,n);
+    fgets(sTempName,20,stdin);
+    sTempName[strcspn(sTempName,"\n")] = '\0';
+    strcpy(sName,sTempName);
 
     difficutyagain:
 
@@ -29,9 +29,9 @@ static char getNameDifficulty (char *sName){
     }
     return cDifficulty;
 }
-//This is the main function which first asks the user if they want to play or view the leaderboard.
-//If the user chooses to play than it first call the getNameDifficulty
-//and than with this data it calls game function;
+// This is the main function which first asks the user if they want to play or view the leaderboard.
+// If the user chooses to play than it first call the getNameDifficulty
+// and than with this data it calls game function;
 int main (void){
     menu:
 
@@ -51,7 +51,7 @@ int main (void){
     switch (cMenuOption){
 
         case 'j':
-            //getting name and difficulty from the user
+            // getting name and difficulty from the user
             cDifficulty=getNameDifficulty(sName);
             game(sName, cDifficulty);
             getchar();
