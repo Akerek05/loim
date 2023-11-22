@@ -6,11 +6,8 @@ extern void writetofile (char *sName,int prize,double time){
     dynamicLeaderboard leader;
     // gets the records already in the file to the leader struct
     leaderboard(&leader);
-    // limiting number of lines in order to limit memory usage and file size
-    if(leader.iNumberOfLines>51){
 
-        leader.iNumberOfLines=50;
-    }
+
     FILE* fp;
     fp = fopen("Leaderboard.csv","w");
     // printing the previous records back in order not to overwrite data

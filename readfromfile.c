@@ -5,11 +5,11 @@
 #include "debugmalloc.h"
 
 
-//gets a filename,
-//it has an output of the questions inside a dynamicArray type pointer
+// Gets a filename,
+//  it has an output of the questions inside a dynamicArray type pointer
 // Maximum memory usage is 1 185 078 bytes,
-//I modified debugmalloc's maximum allocatable memory limit in order to make this happen.
-//freeing is up to the user!!!
+// I modified debugmalloc's maximum allocatable memory limit in order to make this happen.
+// freeing is up to the user!!!
 extern void readFromFile(char *filename, dynamicArray *arrayofquestions) {
     FILE *fp;
     fp = fopen(filename, "r");
@@ -41,7 +41,7 @@ extern void readFromFile(char *filename, dynamicArray *arrayofquestions) {
 
     while (fgets(line, sizeof(line), fp) && i<size) {
 
-        //reads from the "line" string to the questions array inside array of questions struct
+        // reads from the "line" string to the questions array inside array of questions struct
         const char *format = "%99[^;];%99[^;];%99[^;];%99[^;];%99[^;];%1[^;];%24[^\n]";
         sscanf(line, format,
                arrayofquestions->questions[i].question,
@@ -52,7 +52,7 @@ extern void readFromFile(char *filename, dynamicArray *arrayofquestions) {
                &arrayofquestions->questions[i].correctAnswer,
                arrayofquestions->questions[i].category);
         arrayofquestions->numberofQuestions++;
-        // incrasing the index of the question
+        // increasing the index of the question
         i++;
 
     }

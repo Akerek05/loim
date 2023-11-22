@@ -6,12 +6,15 @@
 #include <ctype.h>
 #include "debugmalloc.h"
 
-// The function calls the readfromfile function and than starts a game
+// The function calls the readFromFile function and than starts a game
 // if the user gives the right answer it progresses to the next question
+// accepts lower and uppercase letters as answers, other letters are treated as wrong answers
+// receives the users name as a character array, difficulty as a char
+// frees up questionsarray received from readFromFile
 extern void game (char *sName,char cDifficulty)
 {
     dynamicArray questionsarray;
-    // calling the readFromFile function based on the choosen difficulty
+    // calling the readFromFile function based on the chosen difficulty
     if(cDifficulty=='k'){
     readFromFile("kezdo.csv",&questionsarray);
     }
@@ -33,13 +36,13 @@ extern void game (char *sName,char cDifficulty)
     // number of the question 1-15
     int iRewardIndex=0;
     char cAnswer;
-    // temporary variable resetted for each question
+    // temporary variable reseted for each question
     QuestionDataModel model;
 
     clock_t t;
     t = clock();
     // timer starts
-    // running until the last question (15), or wrong answer
+
     char cHalfHelper;
     char cAudienceHelper;
     bool bDidUseHalf=false;
@@ -63,6 +66,7 @@ extern void game (char *sName,char cDifficulty)
         printf("[D]:%s\n", model.answerD);
         // printf("%c",model.correctAnswer);
         printf("A valasz betujele:");
+        // Halving answer options can only be used once
         if(bDidUseHalf==false)
         {
             printf("\nSzeretne felhasznalni a felezo segitseget?\n(i)(n)");
@@ -72,12 +76,13 @@ extern void game (char *sName,char cDifficulty)
             if(cHalfHelper=='i'&& bDidUseHalf==false)
             {
                 bDiduseHelp=true;
+                // helping bools for each answer
                 bool printA=false;
                 bool printB=false;
                 bool printC=false;
                 bool printD=false;
                 bool didChoseAnother=false;
-
+                // determining which is the answer and setting it's print true
                 switch(model.correctAnswer){
 
                 case 'A':
@@ -94,6 +99,7 @@ extern void game (char *sName,char cDifficulty)
                     break;
                 }
                 do {
+                    // choosing an another letter to write, randomised
                     char randomletter = 'A' + (rand() % 4);
                     if (randomletter!=model.correctAnswer)
                     {
@@ -122,6 +128,7 @@ extern void game (char *sName,char cDifficulty)
                     }
                 }
                 while(!didChoseAnother);
+                // printing the options again this time only the correct and a wrong answer
                 system("cls");
                 printf("%s\n", model.category);
                 printf("%s\n", model.question);
@@ -138,9 +145,11 @@ extern void game (char *sName,char cDifficulty)
                     printf("[D]:%s\n", model.answerD);
                 }
                     printf("A valasz betujele:");
+                // In order not to use two helps in a single question
                 bDidUseHalf=true;
             }
         }
+        // Audience help, basically random, but double chance of the correct answer, can also only used once
         if(bDidUseAudience==false && bDiduseHelp==false)
         {
             printf("\nSzeretne felhasznalni a kozonseg segitseget?\n(i)(n)");
@@ -148,13 +157,12 @@ extern void game (char *sName,char cDifficulty)
             scanf("%c",&cAudienceHelper);
             if(cAudienceHelper=='i'&& bDidUseAudience==false)
             {
-
-
-
+                // counters for each answer option
                 int iNumberofA = 0;
                 int iNumberofB = 0;
                 int iNumberofC = 0;
                 int iNumberofD = 0;
+                // simulating 100 answers
                 for(int i=0; i<100;i++)
                 {
 
@@ -194,6 +202,7 @@ extern void game (char *sName,char cDifficulty)
                             break;
                     }
                 }
+                // displaying the question with percentages added
                 system("cls");
                 printf("%s\n", model.category);
                 printf("%s\n", model.question);
@@ -211,6 +220,7 @@ extern void game (char *sName,char cDifficulty)
         printf("\nCorrect answer:[%c].\n",model.correctAnswer);
 
     }while(toupper(cAnswer)==model.correctAnswer &&iRewardIndex<15);
+    // running until the last question (15), or wrong answer
 
     t = clock() - t;
     double time = ((double)t)/CLOCKS_PER_SEC;

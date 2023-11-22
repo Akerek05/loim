@@ -16,6 +16,6 @@ void leaderboard(dynamicLeaderboard *leader);
 
 void leaderboardprinter(dynamicLeaderboard* leader);
 
-void bubbleSort(dynamicLeaderboard *leader);
+
 
 #endif // LEADERBOARD_H_INCLUDED

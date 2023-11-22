@@ -8,8 +8,8 @@ static void swap(Leaderboard *a, Leaderboard *b) {
     *b = temp;
 }
 
-// A sorting algorithm minimising cpu usage
-extern void bubbleSort(dynamicLeaderboard *leader)
+// A sorting algorithm minimizing cpu usage
+static void bubbleSort(dynamicLeaderboard *leader)
 {
 
     int n = leader->iNumberOfLines;
@@ -51,6 +51,10 @@ extern void leaderboard(dynamicLeaderboard *leader) {
     fclose(fp);
     // setting the int iNumberOfLines (inside the dynamicLeaderboard struct leader)
     // variable to the counted size
+    if(size>51){
+        size=50;
+    }
+    // limiting number of lines in order to limit memory usage and file size
     leader->iNumberOfLines = size;
     // Allocating memory for Leaderboard array
     leader->leaders = (Leaderboard *)malloc(sizeof(Leaderboard) * size);

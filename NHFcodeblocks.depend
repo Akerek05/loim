@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1700653110 source:d:\1.nh\loim\game.c
+1700661129 source:d:\1.nh\loim\game.c
 	"readfromfile.h"
 	"writetofile.h"
 	<stdio.h>
@@ -23,12 +23,12 @@
 	<process.h>
 	<unistd.h>
 
-1700051474 source:d:\1.nh\loim\leaderboard.c
+1700661863 source:d:\1.nh\loim\leaderboard.c
 	<stdio.h>
 	"leaderboard.h"
 	"debugmalloc.h"
 
-1699987308 d:\1.nh\loim\leaderboard.h
+1700661801 d:\1.nh\loim\leaderboard.h
 
 1700652989 source:d:\1.nh\loim\main.c
 	<stdio.h>
@@ -39,14 +39,14 @@
 
 1699894758 d:\1.nh\loim\game.h
 
-1700048262 source:d:\1.nh\loim\readfromfile.c
+1700654768 source:d:\1.nh\loim\readfromfile.c
 	<stdio.h>
 	<string.h>
 	<stdlib.h>
 	"readfromfile.h"
 	"debugmalloc.h"
 
-1700652989 source:d:\1.nh\loim\writetofile.c
+1700661771 source:d:\1.nh\loim\writetofile.c
 	<stdio.h>
 	"leaderboard.h"
 	"writetofile.h"
