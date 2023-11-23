@@ -6,13 +6,19 @@
 
 
 // Gets a filename,
-//  it has an output of the questions inside a dynamicArray type pointer
-// Maximum memory usage is 1 185 078 bytes,
+// it has an output of the questions inside a dynamicArray type pointer
+// Maximum memory usage is 1 315 000 bytes, by hard cap.
 // I modified debugmalloc's maximum allocatable memory limit in order to make this happen.
 // freeing is up to the user!!!
-extern void readFromFile(char *filename, dynamicArray *arrayofquestions) {
+extern void readFromFile(const char *szFilename, dynamicArray *arrayofquestions) {
     FILE *fp;
-    fp = fopen(filename, "r");
+    fp = fopen(szFilename, "r");
+    if (fp == NULL) {
+        printf("error opening question file\n");
+        exit(EXIT_FAILURE);
+    }
+
+
     int size=0;
     char line[550];
 
@@ -21,15 +27,18 @@ extern void readFromFile(char *filename, dynamicArray *arrayofquestions) {
     //counting number of lines
     while (fgets(line, sizeof(line),fp)!=NULL){
         size++;
-
-
     }
-    printf("%d\n",size);
+    // limted memory usage of the database
+    if(size>2501)
+    {
+        // need to indicate if this activates
+        size=2500;
+    }
     fclose(fp);
 
     //to start again from the top of the file
     FILE *fp2;
-    fp2 = fopen(filename, "r");
+    fp2 = fopen(szFilename, "r");
     //index to the questions
     int i=0;
 

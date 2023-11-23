@@ -1,5 +1,5 @@
 #ifndef WRITETOFILE_H_INCLUDED
 #define WRITETOFILE_H_INCLUDED
 
-void writetofile (char *sName,int prize,double time);
+extern void writetofile (char *sName,const int prize,const double time);
 #endif

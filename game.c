@@ -39,14 +39,14 @@ extern void game (char *sName,char cDifficulty)
     // temporary variable reseted for each question
     QuestionDataModel model;
 
-    clock_t t;
-    t = clock();
-    // timer starts
-
     char cHalfHelper;
     char cAudienceHelper;
     bool bDidUseHalf=false;
     bool bDidUseAudience=false;
+
+    clock_t temp;
+    temp = clock();
+    // timer starts
 
     do{
         bool bDiduseHelp=false;
@@ -64,7 +64,7 @@ extern void game (char *sName,char cDifficulty)
         printf("[B]:%s\n", model.answerB);
         printf("[C]:%s\n", model.answerC);
         printf("[D]:%s\n", model.answerD);
-        // printf("%c",model.correctAnswer);
+
         printf("A valasz betujele:");
         // Halving answer options can only be used once
         if(bDidUseHalf==false)
@@ -72,7 +72,7 @@ extern void game (char *sName,char cDifficulty)
             printf("\nSzeretne felhasznalni a felezo segitseget?\n(i)(n)");
             getchar();
             scanf("%c",&cHalfHelper);
-
+            // if anything other than i is received nothing happens counts as no
             if(cHalfHelper=='i'&& bDidUseHalf==false)
             {
                 bDiduseHelp=true;
@@ -155,6 +155,7 @@ extern void game (char *sName,char cDifficulty)
             printf("\nSzeretne felhasznalni a kozonseg segitseget?\n(i)(n)");
             getchar();
             scanf("%c",&cAudienceHelper);
+            // if anything other than i is received nothing happens counts as no
             if(cAudienceHelper=='i'&& bDidUseAudience==false)
             {
                 // counters for each answer option
@@ -222,8 +223,8 @@ extern void game (char *sName,char cDifficulty)
     }while(toupper(cAnswer)==model.correctAnswer &&iRewardIndex<15);
     // running until the last question (15), or wrong answer
 
-    t = clock() - t;
-    double time = ((double)t)/CLOCKS_PER_SEC;
+    temp = clock() - temp;
+    double time = ((double)temp)/CLOCKS_PER_SEC;
     // calculate the elapsed time
 
 
@@ -232,7 +233,7 @@ extern void game (char *sName,char cDifficulty)
 
 
     // write the records to the file when a game ends
-    writetofile(sName,aiRewards[iRewardIndex],time);
+    writetofile(sName,aiRewards[iRewardIndex-1],time);
 
     if(iRewardIndex!=15){
         printf("Gratulalunk nyeremenye %d ft!",aiRewards[iRewardIndex-1]);
