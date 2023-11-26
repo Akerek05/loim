@@ -118,7 +118,7 @@ extern void game (char *sName,char cDifficulty)
                     }
                 }
             }
-            while(didChoseAnother);
+            while(!didChoseAnother);
             system("cls");
             printf("%s\n", model.category);
             printf("%s\n", model.question);
