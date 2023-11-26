@@ -1,0 +1,13 @@
+loim.code-workspace
+main.dSYM
+game.dSYM
+.vscode/tasks.dSYM
+
+main
+.DS_Store
+game.dSYM/Contents
+
+game
+Leaderboard.csv
+
+
