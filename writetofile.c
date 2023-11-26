@@ -2,7 +2,7 @@
 #include "leaderboard.h"
 #include "writetofile.h"
 #include "debugmalloc.h"
-// doesn't have file opening test because if the file can't be be open it exits in the leaderboard function
+// doesn't have file opening test because if the file can't be open it exits in the leaderboard function
 // gets the name the prize and the time from the caller (game)
 // first gets an dynamicleaderboard type pointer from leaderboard (gets record from file and sorts)
 // than places them back but only a limited number and the one from the current game's stats

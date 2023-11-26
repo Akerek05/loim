@@ -5,6 +5,7 @@
 #include "leaderboard.h"
 // version 1.0
 // The program's maximum memory usage is around 1,35 Mb on each game
+
 // The function gets a name,and a difficulty from the user and returns difficulty,
 // and name as a pointer.
 // can handle problems about difficulty, if given difficulty is invalid, it asks for it again
@@ -32,7 +33,7 @@ static char getNameDifficulty (char *sName){
     return cDifficulty;
 }
 // This is the main function which first asks the user if they want to play or view the leaderboard.
-// If the user chooses to play than it first call the getNameDifficulty
+// If the user chooses to play than it first calls the getNameDifficulty
 // and than with this data it calls game function;
 extern int main (void){
     menu:
@@ -85,7 +86,7 @@ extern int main (void){
             goto menu;
     }
 
-    return 0;
+
 }
 
 
