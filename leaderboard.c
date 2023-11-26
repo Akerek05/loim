@@ -1,15 +1,15 @@
 #include <stdio.h>
 #include "leaderboard.h"
 #include "debugmalloc.h"
-//Swaps to two leaderboard type pointers, to be used in bubble sort function
+// Swaps to two leaderboard type pointers, to be used in bubble sort function
 static void swap(Leaderboard *a, Leaderboard *b) {
     Leaderboard temp = *a;
     *a = *b;
     *b = temp;
 }
 
-// A sorting algorithm minimising cpu usage
-extern void bubbleSort(dynamicLeaderboard *leader)
+// A sorting algorithm minimizing cpu usage
+static void bubbleSort(dynamicLeaderboard *leader)
 {
 
     int n = leader->iNumberOfLines;
@@ -24,7 +24,7 @@ extern void bubbleSort(dynamicLeaderboard *leader)
             }
         }
 
-        // If no elements were swapped by inner loop,then break
+        // If no elements were swapped by inner loop, break
         if (swapped == false)
             break;
     }
@@ -32,6 +32,8 @@ extern void bubbleSort(dynamicLeaderboard *leader)
 // gets the records that are already in the file and stores them in the
 // leader (dynamicLeaderboard type struct)
 // allocates memory, freeing is in the writeleaderboard function
+// exits when leaderboard.csv can't be opened, and if it can't allocate memory for sName
+// maximum memory usage 1250 bytes the limit is set uppon ending a game
 extern void leaderboard(dynamicLeaderboard *leader) {
     FILE *fp;
     fp = fopen("Leaderboard.csv", "r");
@@ -51,6 +53,8 @@ extern void leaderboard(dynamicLeaderboard *leader) {
     fclose(fp);
     // setting the int iNumberOfLines (inside the dynamicLeaderboard struct leader)
     // variable to the counted size
+
+
     leader->iNumberOfLines = size;
     // Allocating memory for Leaderboard array
     leader->leaders = (Leaderboard *)malloc(sizeof(Leaderboard) * size);
@@ -80,8 +84,7 @@ extern void leaderboard(dynamicLeaderboard *leader) {
         );
         i++;
     }
-    // sorted already because the limter in the going to to take
-    // out any data above 50 lines, in order to not lose valuable lines
+
     bubbleSort(leader);
 
     fclose(fp1);

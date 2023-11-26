@@ -16,6 +16,6 @@ typedef struct dynamicArray{
     QuestionDataModel *questions;
     int numberofQuestions;
 }dynamicArray;
-void readFromFile(char *filename,dynamicArray *arrayofquestions);
+void readFromFile(const char *szFilename,dynamicArray *arrayofquestions);
 
 #endif

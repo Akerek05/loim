@@ -5,14 +5,20 @@
 #include "debugmalloc.h"
 
 
-//gets a filename,
-//it has an output of the questions inside a dynamicArray type pointer
-// Maximum memory usage is 1 185 078 bytes,
-//I modified debugmalloc's maximum allocatable memory limit in order to make this happen.
-//freeing is up to the user!!!
-extern void readFromFile(char *filename, dynamicArray *arrayofquestions) {
+// Gets a filename,
+// it has an output of the questions inside a dynamicArray type pointer
+// Maximum memory usage is 1 315 000 bytes, by hard cap.
+// I modified debugmalloc's maximum allocatable memory limit in order to make this happen.
+// freeing is up to the user!!!
+extern void readFromFile(const char *szFilename, dynamicArray *arrayofquestions) {
     FILE *fp;
-    fp = fopen(filename, "r");
+    fp = fopen(szFilename, "r");
+    if (fp == NULL) {
+        printf("error opening question file\n");
+        exit(EXIT_FAILURE);
+    }
+
+
     int size=0;
     char line[550];
 
@@ -21,15 +27,18 @@ extern void readFromFile(char *filename, dynamicArray *arrayofquestions) {
     //counting number of lines
     while (fgets(line, sizeof(line),fp)!=NULL){
         size++;
-
-
     }
-    printf("%d\n",size);
+    // limted memory usage of the database
+    if(size>2501)
+    {
+        // need to indicate if this activates
+        size=2500;
+    }
     fclose(fp);
 
     //to start again from the top of the file
     FILE *fp2;
-    fp2 = fopen(filename, "r");
+    fp2 = fopen(szFilename, "r");
     //index to the questions
     int i=0;
 
@@ -41,7 +50,7 @@ extern void readFromFile(char *filename, dynamicArray *arrayofquestions) {
 
     while (fgets(line, sizeof(line), fp) && i<size) {
 
-        //reads from the "line" string to the questions array inside array of questions struct
+        // reads from the "line" string to the questions array inside array of questions struct
         const char *format = "%99[^;];%99[^;];%99[^;];%99[^;];%99[^;];%1[^;];%24[^\n]";
         sscanf(line, format,
                arrayofquestions->questions[i].question,
@@ -52,7 +61,7 @@ extern void readFromFile(char *filename, dynamicArray *arrayofquestions) {
                &arrayofquestions->questions[i].correctAnswer,
                arrayofquestions->questions[i].category);
         arrayofquestions->numberofQuestions++;
-        // incrasing the index of the question
+        // increasing the index of the question
         i++;
 
     }

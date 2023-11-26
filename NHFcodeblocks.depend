@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1700393327 source:d:\1.nh\loim\game.c
+1700661129 source:d:\1.nh\loim\game.c
 	"readfromfile.h"
 	"writetofile.h"
 	<stdio.h>
@@ -23,14 +23,14 @@
 	<process.h>
 	<unistd.h>
 
-1700051474 source:d:\1.nh\loim\leaderboard.c
+1700661863 source:d:\1.nh\loim\leaderboard.c
 	<stdio.h>
 	"leaderboard.h"
 	"debugmalloc.h"
 
-1699987308 d:\1.nh\loim\leaderboard.h
+1700661801 d:\1.nh\loim\leaderboard.h
 
-1700052718 source:d:\1.nh\loim\main.c
+1700652989 source:d:\1.nh\loim\main.c
 	<stdio.h>
 	"game.h"
 	<string.h>
@@ -39,16 +39,69 @@
 
 1699894758 d:\1.nh\loim\game.h
 
-1700048262 source:d:\1.nh\loim\readfromfile.c
+1700654768 source:d:\1.nh\loim\readfromfile.c
 	<stdio.h>
 	<string.h>
 	<stdlib.h>
 	"readfromfile.h"
 	"debugmalloc.h"
 
-1700051058 source:d:\1.nh\loim\writetofile.c
+1700661771 source:d:\1.nh\loim\writetofile.c
 	<stdio.h>
 	"leaderboard.h"
 	"writetofile.h"
 	"debugmalloc.h"
+
+1700758361 source:d:\1.nh\loim\loim\game.c
+	"readfromfile.h"
+	"writetofile.h"
+	<stdio.h>
+	<stdlib.h>
+	<time.h>
+	<ctype.h>
+	"debugmalloc.h"
+
+1700735641 d:\1.nh\loim\loim\readfromfile.h
+
+1700759123 d:\1.nh\loim\loim\writetofile.h
+
+1699888064 d:\1.nh\loim\loim\debugmalloc.h
+	<stdbool.h>
+	<stddef.h>
+	<stdlib.h>
+	<stdio.h>
+	<ctype.h>
+	<string.h>
+	<stdarg.h>
+	<process.h>
+	<unistd.h>
+
+1700755975 source:d:\1.nh\loim\loim\readfromfile.c
+	<stdio.h>
+	<string.h>
+	<stdlib.h>
+	"readfromfile.h"
+	"debugmalloc.h"
+
+1700759123 source:d:\1.nh\loim\loim\writetofile.c
+	<stdio.h>
+	"leaderboard.h"
+	"writetofile.h"
+	"debugmalloc.h"
+
+1700759123 d:\1.nh\loim\loim\leaderboard.h
+
+1700761098 source:d:\1.nh\loim\loim\leaderboard.c
+	<stdio.h>
+	"leaderboard.h"
+	"debugmalloc.h"
+
+1700764038 source:d:\1.nh\loim\loim\main.c
+	<stdio.h>
+	"game.h"
+	<string.h>
+	"debugmalloc.h"
+	"leaderboard.h"
+
+1699894758 d:\1.nh\loim\loim\game.h
 
